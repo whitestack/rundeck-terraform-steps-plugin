@@ -119,5 +119,5 @@ providers:
       - type: String
         name: extra_args
         title: Extra arguments
-        description: 'Terraform input variables. Example: -var os_password=${option.os_password} -var os_tenant=${option.os_tenant}'
+        description: 'Terraform input variables. Example: -var os_password=${option.os_password}'
         required: false
