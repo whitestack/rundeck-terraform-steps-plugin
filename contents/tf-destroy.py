@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# terraform plan
+# terraform destroy
 import os
 import shlex
 import subprocess
@@ -11,7 +11,7 @@ if not path:
     print("Error: Terraform path required", file=sys.stderr)
     sys.exit(2)
 
-command = ["terraform", "-chdir=" + path, "plan"]
+command = ["terraform", "-chdir=" + path, "destroy", "-auto-approve"]
 
 extra = os.environ.get('RD_CONFIG_EXTRA_ARGS', '').strip()
 if extra:

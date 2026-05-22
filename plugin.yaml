@@ -74,6 +74,11 @@ providers:
         name: path
         title: Path
         description: 'Terraform project path'
+      - type: String
+        name: extra_args
+        title: Extra arguments
+        description: 'Terraform input variables. Example: -var os_password=${option.os_password}'
+        required: false
 
   # terraform apply
   # https://www.terraform.io/docs/cli/commands/apply.html
@@ -90,3 +95,29 @@ providers:
         name: path
         title: Path
         description: 'Terraform project path'
+      - type: String
+        name: extra_args
+        title: Extra arguments
+        description: 'Terraform input variables. Example: -var os_password=${option.os_password}'
+        required: false
+  
+  # terraform destroy
+  # https://www.terraform.io/docs/cli/commands/destroy.html
+  - name: terraform-destroy
+    service: WorkflowNodeStep
+    title: 'Terraform destroy'
+    description: 'Destroys all remote objects managed by a Terraform configuration'
+    plugin-type: script
+    script-interpreter: python3 -u
+    script-file: tf-destroy.py
+    script-args: ${config.path}
+    config:
+      - type: String
+        name: path
+        title: Path
+        description: 'Terraform project path'
+      - type: String
+        name: extra_args
+        title: Extra arguments
+        description: 'Terraform input variables. Example: -var os_password=${option.os_password} -var os_tenant=${option.os_tenant}'
+        required: false
