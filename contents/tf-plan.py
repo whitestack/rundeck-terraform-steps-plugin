@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 
 # terraform plan
+import argparse
 import os
 import shlex
 import subprocess
 import sys
 
-path = sys.argv[1] if len(sys.argv) > 1 else ''
-if not path:
-    print("Error: Terraform path required", file=sys.stderr)
-    sys.exit(2)
+parser = argparse.ArgumentParser(description='Creates an execution plan')
+parser.add_argument('path', help='Terraform project path')
+args = parser.parse_args()
 
-command = ["terraform", "-chdir=" + path, "plan"]
+command = ["terraform", "-chdir=" + args.path, "plan"]
 
 extra = os.environ.get('RD_CONFIG_EXTRA_ARGS', '').strip()
 if extra:
