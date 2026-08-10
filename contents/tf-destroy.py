@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 
-# terraform apply
+# terraform destroy
 import argparse
 import os
 import shlex
 import subprocess
 import sys
 
-parser = argparse.ArgumentParser(description='Executes the actions proposed in a Terraform plan')
+parser = argparse.ArgumentParser(description='Destroys all remote objects managed by a Terraform configuration')
 parser.add_argument('path', help='Terraform project path')
 args = parser.parse_args()
 
-command = ["terraform", "-chdir=" + args.path, "apply", "-auto-approve"]
+command = ["terraform", "-chdir=" + args.path, "destroy", "-auto-approve"]
 
 extra = os.environ.get('RD_CONFIG_EXTRA_ARGS', '').strip()
 if extra:
